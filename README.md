@@ -1,3 +1,8 @@
+---
+title: The main page
+---
+
+
 ## Welcome to GitHub Pages
 
 You can use the [editor on GitHub](https://github.com/Atkinson-Lab/Tractor-tutorial/edit/main/README.md) to maintain and preview the content for your website in Markdown files.
