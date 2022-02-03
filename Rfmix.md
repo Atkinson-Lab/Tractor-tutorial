@@ -41,7 +41,7 @@ data
 &nbsp;  
 
 
-### 1. Statistical Phasing 
+## Statistical Phasing 
 
 &nbsp;  
 &nbsp;  
@@ -124,4 +124,28 @@ shapeit -convert \
         
 
 bgzip -c ADMIX_COHORT/ASW.phased.vcf > ADMIX_COHORT/ASW.phased.vcf.gz
-```    
+```   
+
+--- 
+
+(Note: your homogeneous population reference panel might not be phased in real practice; if so, you may consider to run Shapeit pipeline on reference panel as well)
+
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+
+
+## Local Ancestry Inference
+
+&nbsp;  
+&nbsp;  
+
+Once we achieved a homogeneous population phased reference vcf file and a phased admixture vcf file, we can start to perform local ancestry inference. Admixed population tend to have a mosaic chromosome, meaning their chromosomes are inherited from multiple ancestry. The local ancestry tract length is inversely proportional to the # of generations.
+
+For example, the 1st generation of African American population will inherit one intact copy of chromosomes from EUR ancestry, and one intact copy of chromosomes from AFR ancestry. However, for newer generations of admixed populations, the chromosome will break down into smaller pieces due to crossing over in meiosis.
+
+![](images/localancestry.png)
+
+
+
