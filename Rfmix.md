@@ -61,53 +61,52 @@ Although many software has been developed, here we will use [shapeit](https://ma
 &nbsp;  
 
 #### A. Downloading 1000 genome phase 1 reference panel (already attached in HAP_REF folder)
- 
-&nbsp;  
-&nbsp; 
+
+        &nbsp;  
+        &nbsp; 
 
 #### B. Aligning variants between query vcf and reference panel
       
-The goal of this step is to find the common variants of the haplotype reference panel and our admixed population. Running the following script, Shapeit will produce two files `alignments.strand`, `alignments.strand.exclude`, which tell us the variants we should exclude in the downstream analysis. 
- 
-```       
-shapeit -check \
-            --input-vcf ADMIX_COHORT/ASW.unphased.vcf.gz \
-            --input-map HAP_REF/chr22.genetic.map.txt \
-            --input-ref HAP_REF/chr22.haplotypes.gz HAP_REF/chr22.legend.gz HAP_REF/ALL.sample \
-            --output-log alignments
-```
+        The goal of this step is to find the common variants of the haplotype reference panel and our admixed population. Running the following script, Shapeit will produce two files `alignments.strand`, `alignments.strand.exclude`, which tell us the variants we should exclude in the downstream analysis. 
 
-&nbsp;  
-    
+        ```       
+        shapeit -check \
+                    --input-vcf ADMIX_COHORT/ASW.unphased.vcf.gz \
+                    --input-map HAP_REF/chr22.genetic.map.txt \
+                    --input-ref HAP_REF/chr22.haplotypes.gz HAP_REF/chr22.legend.gz HAP_REF/ALL.sample \
+                    --output-log alignments
+        ```
 
-The program will print some information and also throw some error message. You may pay attention to some of these messages:
-    
-```       
-* 61 samples included
-* 217153 SNPs included
+        &nbsp;  
+        
+        The program will print some information and also throw some error message. You may pay attention to some of these messages:
+        
+        ```       
+        * 61 samples included
+        * 217153 SNPs included
 
 
-* #Missing sites in reference panel = 18360
-* #Misaligned sites between panels = 171
-* #Multiple alignments between panels = 0
-```
+        * #Missing sites in reference panel = 18360
+        * #Misaligned sites between panels = 171
+        * #Multiple alignments between panels = 0
+        ```
 
-&nbsp;  
-&nbsp; 
+        &nbsp;  
+        &nbsp; 
 
 #### C. Phasing (this is the most computational expensive step). 
  
-We will perform the actual phasing in this step. Notice we should pass argument `--exclude-snp alignments.snp.strand.exclude` to the program, so that conflict variants can be excluded before phasing.
- 
-```       
-shapeit  --input-vcf ADMIX_COHORT/ASW.unphased.vcf.gz \
-              --input-map HAP_REF/chr22.genetic.map.txt \
-              --input-ref HAP_REF/chr22.haplotypes.gz HAP_REF/chr22.legend.gz HAP_REF/ALL.sample \
-              -O ADMIX_COHORT/ASW.phased.vcf.gz \
-              --exclude-snp alignments.snp.strand.exclude
-```    
+        We will perform the actual phasing in this step. Notice we should pass argument `--exclude-snp alignments.snp.strand.exclude` to the program, so that conflict variants can be excluded before phasing.
 
-      
-      
+        ```       
+        shapeit  --input-vcf ADMIX_COHORT/ASW.unphased.vcf.gz \
+                      --input-map HAP_REF/chr22.genetic.map.txt \
+                      --input-ref HAP_REF/chr22.haplotypes.gz HAP_REF/chr22.legend.gz HAP_REF/ALL.sample \
+                      -O ADMIX_COHORT/ASW.phased.vcf.gz \
+                      --exclude-snp alignments.snp.strand.exclude
+        ```    
+
+
+
  
 #### D. Converting the shapeit outcome to vcf format.
