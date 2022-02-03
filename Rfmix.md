@@ -27,6 +27,7 @@ data
 └───AFR_EUR_REF
 |       |YRI_TSI.phased.vcf
 |       |YRI_TSI.tsv
+|       |chr22.genetic.map.modified.txt
 |
 └───HAP_REF    
         |chr22.haplotypes.gz
@@ -141,11 +142,32 @@ bgzip -c ADMIX_COHORT/ASW.phased.vcf > ADMIX_COHORT/ASW.phased.vcf.gz
 &nbsp;  
 &nbsp;  
 
-Once we achieved a homogeneous population phased reference vcf file and a phased admixture vcf file, we can start to perform local ancestry inference. Admixed population tend to have a mosaic chromosome, meaning their chromosomes are inherited from multiple ancestry. The local ancestry tract length is inversely proportional to the # of generations.
+Once we achieved a homogeneous population phased reference vcf file and a phased admixture vcf file, we can start to perform local ancestry inference. Admixed population tend to have a mosaic chromosome, meaning their chromosomes are inherited from multiple ancestries. The average length of local ancestry tracts is inversely proportional to the # of generations.
 
-For example, the 1st generation of African American population will inherit one intact copy of chromosomes from EUR ancestry, and one intact copy of chromosomes from AFR ancestry. However, for newer generations of admixed populations, the chromosome will break down into smaller pieces due to crossing over in meiosis.
+For example, the 1st generation of African American population inherited one intact copy of chromosomes from EUR ancestry, and one intact copy of chromosomes from AFR ancestry. However, for newer generations of admixed populations, the chromosome will break down into smaller pieces due to crossover events in meiosis.
 
 ![](images/localancestry.png)
 
+&nbsp;  
+&nbsp;  
+
+The goal of running local ancestry inference is to "paint" the chromosomes based on ancestry origin. In the downstream analysis, we will use local ancestry information to help us better understand the genotype-phenotype association.
+
+![](images/inference.png)
+
+&nbsp;  
+&nbsp;  
+
+Here we use Rfmix to perform local ancestry inference, given its high accuracy in admixed population. RFmix takes the following argument and will produce 4 files `ASW.deconvoluted.fb.tsv`, `ASW.deconvoluted.msp.tsv`, `ASW.deconvoluted.rfmix.Q`, `ASW.deconvoluted.sis.tsv`, most of which will be used in the downstream analysis. Among those files, it's worth double check `ASW.deconvoluted.rfmix.Q` to make sure the global ancestry proportion is expected. 
+
+
+```
+rfmix -f ADMIX_COHORT/ASW.phased.vcf.gz \
+        -r AFR_EUR_REF/YRI_GBR.phased.vcf.gz \
+        -m AFR_EUR_REF/YRI_GBR.tsv \
+        -g AFR_EUR_REF/chr22.genetic.map.modified.txt \
+        -o ADMIX_COHORT/ASW.deconvoluted \
+        --chromosome=22
+```
 
 
