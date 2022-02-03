@@ -69,8 +69,6 @@ Although many software has been developed, here we will use [shapeit](https://ma
 &nbsp;  
 
 #### B. Aligning common variants between query vcf and reference panel
-      
-&nbsp;  
 
 The goal of this step is to find the common variants of the haplotype reference panel and our admixed population. Running the following script, Shapeit will produce two files `alignments.strand`, `alignments.strand.exclude`, which tell us the variants we should exclude in the downstream analysis. 
 
@@ -81,8 +79,6 @@ shapeit -check \
         --input-ref HAP_REF/chr22.haplotypes.gz HAP_REF/chr22.legend.gz HAP_REF/ALL.sample \
         --output-log alignments
 ```
-
-&nbsp;  
     
 
 The program will print some information and also throw some error message. You may pay attention to some of these messages:
@@ -101,9 +97,6 @@ The program will print some information and also throw some error message. You m
 &nbsp;  
 
 #### C. Phasing (this is the most computational expensive step). 
- 
-       
-&nbsp;  
 
 We will perform the actual phasing in this step. Notice we should pass argument `--exclude-snp alignments.snp.strand.exclude` to the program, so that conflict variants can be excluded before phasing.
 
