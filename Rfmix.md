@@ -98,14 +98,14 @@ The program will print some information and also throw some error message. You m
 
 #### C. Phasing (this is the most computational expensive step). 
 
-We will perform the actual phasing in this step. Notice we should pass argument `--exclude-snp alignments.snp.strand.exclude` to the program, so that conflict variants can be excluded before phasing.
+We will perform the actual phasing in this step. Notice we should pass argument `--exclude-snp alignments.snp.strand.exclude` to the program, so that conflict variants can be excluded before phasing. After running this command, you should find two file (`ASW.phased.haps` & `ASW.phased.sample`) have been created in the `ADMIX_COHORT` directory.
 
 
 ```       
 shapeit  --input-vcf ADMIX_COHORT/ASW.unphased.vcf.gz \
       --input-map HAP_REF/chr22.genetic.map.txt \
       --input-ref HAP_REF/chr22.haplotypes.gz HAP_REF/chr22.legend.gz HAP_REF/ALL.sample \
-      -O ADMIX_COHORT/ASW.phased.vcf.gz \
+      -O ADMIX_COHORT/ASW.phased \
       --exclude-snp alignments.snp.strand.exclude
 ```    
 
@@ -114,3 +114,14 @@ shapeit  --input-vcf ADMIX_COHORT/ASW.unphased.vcf.gz \
       
  
 #### D. Converting the shapeit outcome to vcf format.
+
+Shapeit provides convenient function to convert from `haps` file format to `vcf` format. Notice in the new vcf file we just created, slashes are substituted by vertical bar to seperate genotype. Additionally, we can zip the vcf file to save disc space.
+
+```       
+shapeit -convert \
+        --input-haps ADMIX_COHORT/ASW.phased\
+        --output-vcf ADMIX_COHORT/ASW.phased.vcf
+        
+
+bgzip -c ADMIX_COHORT/ASW.phased.vcf > ADMIX_COHORT/ASW.phased.vcf.gz
+```    
