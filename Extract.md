@@ -89,15 +89,15 @@ CHROM POS REF ALT SAMPLE1   ...
 ...
 ```
 
-The msp file contains local ancestry for each strand
+The msp file contains local ancestry for each strand. Notice its coordinates is different from vcf file -- msp file uses a window to specify LA information. For example, the first row of the following msp file is telling us this: for SAMPLE1, strand0 from position1-position52 is inherited from `EUR` ancestry and strand1 from position1-position52 is inherited from `AFR` background.
 
 ```
 AFR=0       EUR=1
-CHROM POS SAMPLE1.0 SAMPLE1.1   ...
-22    10  1         0       ...
-22    93  1         1       ...
-22    106 0         1       ...
-22    223 0         1      ...
+CHROM SPOS  EPOS SAMPLE1.0 SAMPLE1.1   ...
+22    1     52  1         0       ...
+22    52    101 1         1       ...
+22    101   190 0         1       ...
+22    190   283 0         1       ...
 
 ...
 ```
@@ -105,11 +105,11 @@ CHROM POS SAMPLE1.0 SAMPLE1.1   ...
 
 &nbsp;  
 
-By checking both files simultaneously, we would immediately know the local ancestry background of risk allele, as the upper diagram shows. To represent both LA and risk allele information, we need to recode each variant into 4 columns, with each column represents a unique combination of LA and risk allele (`AFR-nonRisk`, `AFR-Risk`, `EUR-nonRisk`, `EUR-Risk`). In the diagram below, at the first variant, SAMPLE1 has one copy of `AFR-nonRisk`, and one copy of `EUR-Risk`, and therefore will be encoded to **[1,0,0,1]**. 
+By checking both files simultaneously, we can figure out the local ancestry background of risk allele, as the upper diagram shows. To represent both LA and risk allele information, we need to recode each variant into 4 columns, with each column represents a unique combination of LA and risk allele (`AFR-nonRisk`, `AFR-Risk`, `EUR-nonRisk`, `EUR-Risk`). In the diagram below, at the first variant, SAMPLE1 has one copy of `AFR-nonRisk`, and one copy of `EUR-Risk`, and therefore will be encoded to **[1,0,0,1]**. 
 
 &nbsp;  
 
-To further compress the information, `ExtractTracts.py` did an additional step -- adding `AFR-nonRisk` and `AFR-Risk`, which could be interpreted as copies of `AFR` local ancestry for that variant. 
+To further compress the information, `ExtractTracts.py` did an additional step -- adding `AFR-nonRisk` and `AFR-Risk`, which could be interpreted as the copies of `AFR` local ancestry for that variant. 
 
 &nbsp;  
 
@@ -121,9 +121,9 @@ To further compress the information, `ExtractTracts.py` did an additional step -
 
 We will generate 6 files in this step, and 3 of them will be used in the next step for statistical modeling.
 ```
-ASW.phased.anc0.hapcount.txt        (X1)
-ASW.phased.anc0.dosage.txt          (X2)
-ASW.phased.anc1.dosage.txt          (X3)
+ASW.phased.anc0.hapcount.txt        (used as X1)
+ASW.phased.anc0.dosage.txt          (used as X2)
+ASW.phased.anc1.dosage.txt          (used as X3)
 ```
 
 
