@@ -3,7 +3,7 @@ title: Extract Risk Alleles and Local Ancestry Information
 filename: Extract.md
 ---
 
-Compare to standard GWAS model, Tractor takes local ancestry into account and therefore may help improve statistical power and provide a less biased effect size estimate. In the [previous step](Rfmix.md), we demonstrated how to perform local ancestry inference using Rfmix. In this post, we will use its output files, as well as phased vcf files, to generate a more interpretable intermediate file which will be used in statistical modeling.
+Compare to standard GWAS model, Tractor takes local ancestry into account and therefore may help improve statistical power and provide a less biased effect size estimate. In the [previous step](Rfmix.md), we demonstrated how to perform local ancestry inference using Rfmix. In this post, we will use its output files, as well as phased vcf files, to generate more interpretable intermediate files which will be used in statistical modeling.
 
 
 &nbsp;  
@@ -51,7 +51,7 @@ The `ASW.deconvoluted.msp.tsv` file will be later used as an argument for `Extra
 &nbsp;  
 
 
-## Run `ExtractTracts.py`
+## Extract Tracts
 
 We provide a script that can simultaneously extract risk allele information and local ancestry information. Simply type the following command in terminal:
 ```
@@ -103,7 +103,28 @@ CHROM POS SAMPLE1.0 SAMPLE1.1   ...
 ```
 
 
-By checking both files simultaneously, we would immediately know the local ancestry background of risk allele, as the diagram shows. 
+&nbsp;  
+
+By checking both files simultaneously, we would immediately know the local ancestry background of risk allele, as the upper diagram shows. To represent both LA and risk allele information, we need to recode each variant into 4 columns, with each column represents a unique combination of LA and risk allele (`AFR-nonRisk`, `AFR-Risk`, `EUR-nonRisk`, `EUR-Risk`). In the diagram below, at the first variant, SAMPLE1 has one copy of `AFR-nonRisk`, and one copy of `EUR-Risk`, and therefore will be encoded to **[1,0,0,1]**. 
+
+&nbsp;  
+
+To further compress the information, `ExtractTracts.py` did an additional step -- adding `AFR-nonRisk` and `AFR-Risk`, which could be interpreted as copies of `AFR` local ancestry for that variant. 
+
+&nbsp;  
+
+
+![](images/ExtractTract.png)
+
+
+&nbsp; 
+
+We will generate 6 files in this step, and 3 of them will be used in the next step for statistical modeling.
+```
+ASW.phased.anc0.hapcount.txt        (X1)
+ASW.phased.anc0.dosage.txt          (X2)
+ASW.phased.anc1.dosage.txt          (X3)
+```
 
 
 
