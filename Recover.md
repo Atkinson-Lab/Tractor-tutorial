@@ -1,5 +1,5 @@
 ---
-title: Recover Tracts (optional)
+title: Recover Tracts (optional) (unfinished)
 filename: Recover.md
 ---
 
@@ -41,3 +41,8 @@ bcftools annotate -x INFO,FORMAT file.vcf.gz > stripped_file.vcf
 ## To Do List
 
 This page is directly copied from Tractor wiki page. Further editing is required.
+
+## [Next Page](Extract.md)
+
+
+
