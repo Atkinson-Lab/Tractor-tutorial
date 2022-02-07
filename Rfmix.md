@@ -171,3 +171,18 @@ rfmix -f ADMIX_COHORT/ASW.phased.vcf.gz \
 ```
 
 
+
+
+
+
+That's the end of this step. We will demonstrate how to iteratively improve phasing and local ancestry inference in the [next post](Recover.md)
+
+
+&nbsp;  
+&nbsp; 
+
+### [Next Page]()
+
+
+
+
