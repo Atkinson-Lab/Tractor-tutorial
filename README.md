@@ -22,13 +22,13 @@ Important: The success of Tractor relies on good local ancestry calls. Please en
 ## Tractor pipeline step-by-step tutorials:
 
 
-Step0. Local Ancestry Inference with Rfmix [Rfmix](Rfmix.md)
+Step0. [Phasing and Local Ancestry Inference](Rfmix.md)
 
-Step1. Recovering Tracts [Recover](Recover.md)
+Step1. [Recovering Tracts](Recover.md)
 
-Step2. Extracting tracts and ancestry dosages [Extract](Extract.md)
+Step2. [Extracting tracts and ancestry dosages](Extract.md)
 
-Step3a. Tractor GWAS with Hail (suitable for large scale analysis) [Hail](Hail.md)
+Step3a. [Tractor GWAS with Hail (suitable for large scale analysis)](Hail.md)
 
-Step3b. Tractor GWAS with local implementation (suitable for smaller dataset) [Local](Local.md)
+Step3b. [Tractor GWAS with local implementation (suitable for smaller dataset)](Local.md)
 
