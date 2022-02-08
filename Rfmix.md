@@ -30,7 +30,7 @@ data
 |       |chr22.genetic.map.modified.txt
 |
 └───HAP_REF    
-        |chr22.haplotypes.gz
+        |chr22.hap.gz
         |chr22.legend.gz
         |ALL.sample
         |chr22.genetic.map.txt
@@ -71,13 +71,13 @@ Although many software has been developed, here we will use [shapeit](https://ma
 
 #### B. Aligning common variants between query vcf and reference panel
 
-The goal of this step is to find the common variants of the haplotype reference panel and our admixed population. Running the following script, Shapeit will produce two files `alignments.strand`, `alignments.strand.exclude`, which tell us the variants we should exclude in the downstream analysis. 
+The goal of this step is to find the common variants of the haplotype reference panel and our admixed population. Running the following script, Shapeit will typically produce two files `alignments.strand`, `alignments.strand.exclude`, which tell us the variants we should exclude in the downstream analysis. However, the dataset I am using here doesn’t have any variant conflicts, and therefore we can ignore this potential issue for now.
 
 ```       
 shapeit -check \
         --input-vcf ADMIX_COHORT/ASW.unphased.vcf.gz \
         --input-map HAP_REF/chr22.genetic.map.txt \
-        --input-ref HAP_REF/chr22.haplotypes.gz HAP_REF/chr22.legend.gz HAP_REF/ALL.sample \
+        --input-ref HAP_REF/chr22.hap.gz HAP_REF/chr22.legend.gz HAP_REF/ALL.sample \
         --output-log alignments
 ```
     
@@ -89,9 +89,10 @@ The program will print some information and also throw some error message. You m
 * 217153 SNPs included
 
 
-* #Missing sites in reference panel = 18360
-* #Misaligned sites between panels = 171
-* #Multiple alignments between panels = 0
+# if reference panel sites are different from query vcf file, shapeit2 might print:
+* #Missing sites in reference panel = 123456
+* #Misaligned sites between panels = 123456
+* #Multiple alignments between panels = 123456
 ```
 
 &nbsp;  
@@ -99,15 +100,19 @@ The program will print some information and also throw some error message. You m
 
 #### C. Phasing (this is the most computational expensive step). 
 
-We will perform the actual phasing in this step. Notice we should pass argument `--exclude-snp alignments.snp.strand.exclude` to the program, so that conflict variants can be excluded before phasing. After running this command, you should find two file (`ASW.phased.haps` & `ASW.phased.sample`) have been created in the `ADMIX_COHORT` directory.
+We will perform the actual phasing in this step. Notice we should pass argument `--exclude-snp alignments.snp.strand.exclude` to the program if you encounter errors with your own dataset, so that conflict variants can be excluded before phasing.
+
+After running this command, you should find two file (`ASW.phased.haps` & `ASW.phased.sample`) have been created in the `ADMIX_COHORT` directory.
 
 
 ```       
 shapeit  --input-vcf ADMIX_COHORT/ASW.unphased.vcf.gz \
       --input-map HAP_REF/chr22.genetic.map.txt \
-      --input-ref HAP_REF/chr22.haplotypes.gz HAP_REF/chr22.legend.gz HAP_REF/ALL.sample \
-      -O ADMIX_COHORT/ASW.phased \
-      --exclude-snp alignments.snp.strand.exclude
+      --input-ref HAP_REF/chr22.hap.gz HAP_REF/chr22.legend.gz HAP_REF/ALL.sample \
+      -O ADMIX_COHORT/ASW.phased 
+      
+      
+      # add this if shapeit throw error message:   --exclude-snp alignments.snp.strand.exclude
 ```    
 
 &nbsp;  
