@@ -4,7 +4,7 @@ filename: Recover.md
 ---
 
 
-**This page is devoted to describing our scripts to detect and correct switch errors in phased data using local ancestry to recover long-range tracts. See Figure 1 in our manuscript for additional context. A switch error is defined as a swap in ancestries within a 1 cM window to opposite strands conditioned on heterozygous ancestral dosage. Currently, the tract recovery step is only implemented for a 2-way admixed setting. All subsequent steps are compatible with multi-way admixed cohorts. Tract recovery is not required for analyses that do not consider haplotypes, including GWAS. **
+**This page is devoted to describing our scripts to detect and correct switch errors in phased data using local ancestry to recover long-range tracts. See Figure 1 in our manuscript for additional context. A switch error is defined as a swap in ancestries within a 1 cM window to opposite strands conditioned on heterozygous ancestral dosage. Currently, the tract recovery step is only implemented for a 2-way admixed setting. All subsequent steps are compatible with multi-way admixed cohorts. Tract recovery is not required for analyses that do not consider haplotypes, including GWAS.**
 
 &nbsp;  
 &nbsp;  
@@ -42,7 +42,7 @@ bcftools annotate -x INFO,FORMAT file.vcf.gz > stripped_file.vcf
 
 This page is directly copied from Tractor wiki page. Further editing is required.
 
-## [Next Page](Extract.md)
+## [Phasing and LAI](Rfmix.md)      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     [Main Page](README.md) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  [Extract Tract](Extract.md) 
 
 
 
