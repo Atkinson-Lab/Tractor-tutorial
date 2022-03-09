@@ -42,6 +42,16 @@ data
 &nbsp;  
 
 
+## Software 
+Shapeit2: v2.r837
+Rfmix2
+Tractor (requires the following packages: numpy, statsmodel, pandas)
+
+
+&nbsp;  
+&nbsp;  
+
+
 ## Statistical Phasing 
 
 &nbsp;  
