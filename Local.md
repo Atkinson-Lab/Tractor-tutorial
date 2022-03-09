@@ -14,5 +14,6 @@ Tractor implicitly assumes that the risk alleles that reside in different local 
 
 
 
-![](/images/TractorModel.png)
+
+![Methods comparison](images/TractorModel.png)
 
