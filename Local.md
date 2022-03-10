@@ -58,7 +58,7 @@ manhattan(sumstats[!is.na(sumstats$ANC1P),], chr="CHROM", bp="POS", snp="ID", p=
           xlim = c(min(sumstats$POS), max(sumstats$POS)), ylim = c(0,15), main = "EUR")
 ```
 
-![](Manhattan.png)
+![](images/Manhattan.png)
 
 
 That's the end of the tutorial, please refer to [Tractor Wiki](https://github.com/Atkinson-Lab/Tractor/wiki) page for a more detailed manual.
