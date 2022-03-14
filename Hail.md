@@ -11,3 +11,5 @@ The tutorial is still under development, but we will provide an updated Jupyter 
 Stay tuned!
 
 In the meantime, you can see implementation for Hail Tractor on the wiki for this script here: https://github.com/Atkinson-Lab/Tractor/wiki/Step-3a:-Tractor-GWAS-(Hail). 
+
+## [Main Page](README.md)
