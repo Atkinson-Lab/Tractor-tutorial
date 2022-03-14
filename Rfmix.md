@@ -204,7 +204,9 @@ Now you have your local ancestry calls and are ready for Tractor! We will demons
 &nbsp;  
 &nbsp; 
 
-## [Next Page](Recover.md)
-
 ## [Main Page](README.md)
+
+## [Next Page (Recover phasing)](Recover.md)
+
+
 
