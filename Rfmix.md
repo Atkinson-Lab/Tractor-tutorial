@@ -14,7 +14,11 @@ filename: Rfmix.md
 &nbsp; 
 
 ### Data
-We have provided an [example dataset](https://github.com/Atkinson-Lab/Tractor-tutorial/blob/main/tutorial-data.zip) that you may follow along with this tutorial. Please download from here, and unzip them.
+We have provided an [example dataset](https://github.com/Atkinson-Lab/Tractor-tutorial/blob/main/tutorial-data.zip) that you may follow along with this tutorial. Please download from [here](https://github.com/Atkinson-Lab/Tractor-tutorial/blob/main/tutorial-data.zip), and unzip them.
+
+```
+gunzip tutorial-data.zip
+```
 
 The dataset we are going to use here is 61 African Americans (only chromosome 22) from the Thousand Genome project – two-way admixtures of EUR and AFR population. Besides, we also provided the haplotype reference panel that is downloaded from  [Shapeit](https://mathgen.stats.ox.ac.uk/impute/data_download_1000G_phase1_integrated_SHAPEIT2_16-06-14.html), which will be used for phasing. We also provide phased reference vcf files (EUR and AFR ancestry, respectively) for local ancestry inference. Here is a complete list of the files:
 
