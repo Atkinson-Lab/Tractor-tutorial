@@ -17,6 +17,10 @@ Before running the Tractor GWAS method, data will need to be phased and have the
 ### Data
 We have provided an [example dataset](https://github.com/Atkinson-Lab/Tractor-tutorial/blob/main/tutorial-data.zip) that you may analyze to follow along with this tutorial. Please download and upzip the data from here if so.
 
+```
+gunzip tutorial-data.zip
+```
+
 The example cohort dataset we are going to use here consists of chromosome 22 for 61 African American individuals from the [Thousand Genome Project](https://www.internationalgenome.org/). These individuals are two-way admixed with components from continental Europe (EUR) and continental Africa (AFR). We simulated phenotypes for these individuals for use in the GWAS.
 
 We also provide a haplotype reference panel that can be downloaded from  [Shapeit](https://mathgen.stats.ox.ac.uk/impute/data_download_1000G_phase1_integrated_SHAPEIT2_16-06-14.html), which will be used for phasing, along with phased reference VCF files for local ancestry inference. Here is a complete list of the files:
@@ -48,7 +52,8 @@ data
 &nbsp;  
 
 
-## Software 
+### Software 
+
 [Shapeit2: v2.r837](https://mathgen.stats.ox.ac.uk/genetics_software/shapeit/shapeit.html)  
 
 [Rfmix version 2](https://github.com/slowkoni/rfmix/blob/master/MANUAL.md)  
@@ -58,6 +63,8 @@ data
 
 &nbsp;  
 &nbsp;  
+&nbsp;  
+&nbsp; 
 
 
 ## Statistical Phasing 
