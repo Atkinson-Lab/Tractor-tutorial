@@ -3,6 +3,8 @@ title: Extract Risk Alleles and Local Ancestry Information
 filename: Extract.md
 ---
 
+![](images/TractorIcon.png)
+
 Compared to the standard GWAS model, Tractor takes local ancestry into account and therefore may help improve discovery power when there are (LD, MAF, or effect size) differences across ancestries, as well as better localizing top hits, and providing more accurate effect size estimates. In the [previous step](Rfmix.md), we demonstrated how to perform local ancestry inference using Rfmix. Now, we will process the RFmix output files to generate more interpretable intermediate files which will be used in statistical modeling.
 
 
