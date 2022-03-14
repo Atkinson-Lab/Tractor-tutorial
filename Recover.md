@@ -44,7 +44,9 @@ bcftools annotate -x INFO,FORMAT file.vcf.gz > stripped_file.vcf
 
 This page is directly copied from Tractor wiki page. Further editing is required.
 
-## [Phasing and LAI](Rfmix.md)      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     [Main Page](README.md) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  [Extract Tracts](Extract.md) 
+## [Main Page](README.md) 
+
+## [Next Page (Extract Tracts)](Extract.md)      
 
 
 
