@@ -3,9 +3,11 @@ title: Tractor with Hail
 filename: Hail.md
 ---
 
-We will use Hail here
+Running Tractor GWAS in a scalable cloud native Hail format
 =====
 
-The tutorial is still under developing, but we will provide a Jupyter notebook file that you can follow along. 
+The tutorial is still under development, but we will provide an updated Jupyter notebook file that you can follow along soon. 
 
-Stay in tune! 
+Stay tuned!
+
+In the meantime, you can see implementation for Hail Tractor on the wiki for this script here: https://github.com/Atkinson-Lab/Tractor/wiki/Step-3a:-Tractor-GWAS-(Hail). 
