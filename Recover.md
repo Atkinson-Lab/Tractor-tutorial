@@ -3,6 +3,7 @@ title: Recover Tracts (optional) (unfinished)
 filename: Recover.md
 ---
 
+![](images/TractorIcon.png)
 
 **Note - this optional step currently is only implemented for two-way admixed populations. If the end goal of analyses does not require long-range haplotypes, this step may be skipped for faster compute time**
 
