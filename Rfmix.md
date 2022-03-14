@@ -49,8 +49,10 @@ data
 
 
 ## Software 
-[Shapeit2: v2.r837](https://mathgen.stats.ox.ac.uk/genetics_software/shapeit/shapeit.html)
-[Rfmix version 2](https://github.com/slowkoni/rfmix/blob/master/MANUAL.md))
+[Shapeit2: v2.r837](https://mathgen.stats.ox.ac.uk/genetics_software/shapeit/shapeit.html)  
+
+[Rfmix version 2](https://github.com/slowkoni/rfmix/blob/master/MANUAL.md)  
+
 [Tractor (requires the following packages: numpy, statsmodel, pandas)](https://github.com/Atkinson-Lab/Tractor)
 
 
@@ -204,4 +206,5 @@ Now you have your local ancestry calls and are ready for Tractor! We will demons
 
 ## [Next Page](Recover.md)
 
+## [Main Page](README.md)
 
