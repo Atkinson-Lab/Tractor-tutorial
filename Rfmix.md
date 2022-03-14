@@ -9,18 +9,17 @@ filename: Rfmix.md
 &nbsp;  
 
 # Step0. Phasing and Local Ancestry inference
+Before running the Tractor GWAS method, data will need to be phased and have their local ancstry inferred. To assist users with these precursor steps, we provide example code for running the full pipeline including these preliminary steps, assuming QC'ed but unphased cohort data.
 
 &nbsp;  
 &nbsp; 
 
 ### Data
-We have provided an [example dataset](https://github.com/Atkinson-Lab/Tractor-tutorial/blob/main/tutorial-data.zip) that you may follow along with this tutorial. Please download from [here](https://github.com/Atkinson-Lab/Tractor-tutorial/blob/main/tutorial-data.zip), and unzip them.
+We have provided an [example dataset](https://github.com/Atkinson-Lab/Tractor-tutorial/blob/main/tutorial-data.zip) that you may analyze to follow along with this tutorial. Please download and upzip the data from here if so.
 
-```
-gunzip tutorial-data.zip
-```
+The example cohort dataset we are going to use here consists of chromosome 22 for 61 African American individuals from the [Thousand Genome Project](https://www.internationalgenome.org/). These individuals are two-way admixed with components from continental Europe (EUR) and continental Africa (AFR). We simulated phenotypes for these individuals for use in the GWAS.
 
-The dataset we are going to use here is 61 African Americans (only chromosome 22) from the Thousand Genome project – two-way admixtures of EUR and AFR population. Besides, we also provided the haplotype reference panel that is downloaded from  [Shapeit](https://mathgen.stats.ox.ac.uk/impute/data_download_1000G_phase1_integrated_SHAPEIT2_16-06-14.html), which will be used for phasing. We also provide phased reference vcf files (EUR and AFR ancestry, respectively) for local ancestry inference. Here is a complete list of the files:
+We also provide a haplotype reference panel that can be downloaded from  [Shapeit](https://mathgen.stats.ox.ac.uk/impute/data_download_1000G_phase1_integrated_SHAPEIT2_16-06-14.html), which will be used for phasing, along with phased reference VCF files for local ancestry inference. Here is a complete list of the files:
 
 ```
 data
@@ -50,10 +49,8 @@ data
 
 
 ## Software 
-Shapeit2: v2.r837  
-
-Rfmix  Version2
-
+Shapeit2: v2.r837
+Rfmix2
 Tractor (requires the following packages: numpy, statsmodel, pandas)
 
 
@@ -66,12 +63,12 @@ Tractor (requires the following packages: numpy, statsmodel, pandas)
 &nbsp;  
 &nbsp;  
  
- Genotype and sequencing data is often written in vcf format. Due to the diploid nature of the human genome, the sequencing/genotyping technology can only capture the genotype information but not the haplotype. We therefore don't know which allele is on which strand of the chromosome. The purpose of statistical phasing is to recover the configuration of alleles across a chromosome, as the diagram shows:
+Cohort genotype data is often released in [VCF format](https://www.internationalgenome.org/wiki/Analysis/Variant%20Call%20Format/vcf-variant-call-format-version-40/), which is the form we start from here. Though the human genome is diploid, sequencing/genotyping technology can only capture information regarding the genotypes that are present but not their orientation; e.g. the haplotype. We therefore don't know which allele is on which strand of the chromosome. The purpose of statistical phasing is to recover the configuration of alleles across a chromosome, as the diagram shows:
 
 ![](images/SHAPEIT.png)
 
 
-Notice that each entry is separated with slash (e.g. `0/1`), and that means the vcf file is unphased. By performing phasing, we will figure out the most likely configuration of allele positions. After performing the following steps, we should get a phased vcf file, with slash substituted by a vertical bar (e.g. `1|0`).
+Notice that each entry is separated with slash (e.g. `0/1`), and that means the VCF file is unphased. By performing phasing, we will figure out the most likely configuration of allele positions. After performing the following steps, we should get a phased VCF file, with the slash substituted by a vertical bar (e.g. `1|0`) which indicates that the data is phased.
 
 
 &nbsp;  
@@ -79,7 +76,7 @@ Notice that each entry is separated with slash (e.g. `0/1`), and that means the 
 &nbsp;  
  
 
-Although many software has been developed, here we will use [shapeit](https://mathgen.stats.ox.ac.uk/genetics_software/shapeit/shapeit.html#output) to perform phasing based on reference haploid panel. According to the manual [here](https://mathgen.stats.ox.ac.uk/genetics_software/shapeit/shapeit.html#reference), the phasing procedure consists of the following 4 steps:
+Although many software has been developed for statistical phasing, here we will use [shapeit](https://mathgen.stats.ox.ac.uk/genetics_software/shapeit/shapeit.html#output) to perform phasing based on a reference haplotype panel. According to the manual [here](https://mathgen.stats.ox.ac.uk/genetics_software/shapeit/shapeit.html#reference), the phasing procedure consists of the following 4 steps:
 
 &nbsp;  
 
@@ -119,9 +116,9 @@ The program will print some information and also throw some error message. You m
 
 #### C. Phasing (this is the most computational expensive step). 
 
-We will perform the actual phasing in this step. Notice we should pass argument `--exclude-snp alignments.snp.strand.exclude` to the program if you encounter errors with your own dataset, so that conflict variants can be excluded before phasing.
+We will perform the actual phasing in this step. Notice we should pass argument `--exclude-snp alignments.snp.strand.exclude` to the program if you encounter errors with your own dataset, so that conflict variants are excluded. In this command, we direct Shapeit to our cohort data (--input-vcf) which is in a directory with the input data, the reference panel and recombination map files, and tell it where to place the output (-O).
 
-After running this command, you should find two file (`ASW.phased.haps` & `ASW.phased.sample`) have been created in the `ADMIX_COHORT` directory.
+After running this command, you should find that two file (`ASW.phased.haps` & `ASW.phased.sample`) have been created in the `ADMIX_COHORT` output directory.
 
 
 ```       
@@ -138,9 +135,9 @@ shapeit  --input-vcf ADMIX_COHORT/ASW.unphased.vcf.gz \
 &nbsp;       
       
  
-#### D. Converting the shapeit outcome to vcf format.
+#### D. Converting  shapeit output to vcf format.
 
-Shapeit provides convenient function to convert from `haps` file format to `vcf` format. Notice in the new vcf file we just created, slashes are substituted by vertical bar to seperate genotype. Additionally, we can zip the vcf file to save disc space.
+Shapeit provides a convenient function to convert from its `haps`/`sample` file format to `vcf` format. Notice in the new vcf file we just created, slashes have changed to the pipe or vertical bar to seperate genotype. Additionally, we can zip the vcf file to save disc space.
 
 ```       
 shapeit -convert \
@@ -153,7 +150,7 @@ bgzip -c ADMIX_COHORT/ASW.phased.vcf > ADMIX_COHORT/ASW.phased.vcf.gz
 
 --- 
 
-(Note: your homogeneous population reference panel might not be phased in real practice; if so, you may consider to run Shapeit pipeline on reference panel as well)
+(Note: your reference panel needs to be phased to be used in this manner. If you are hoping to use an unphased reference panel, you may consider to run the Shapeit pipeline on the reference panel as well without being informed by a reference, or to joint-phase your cohort and reference populations).
 
 &nbsp;  
 &nbsp;  
@@ -206,7 +203,5 @@ That's the end of this step. We will demonstrate how to iteratively improve phas
 &nbsp; 
 
 ## [Next Page](Recover.md)
-
-
 
 
