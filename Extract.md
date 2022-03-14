@@ -129,6 +129,6 @@ Now we are ready to run Tractor GWAS! We have recently developed python scripts 
 
 ## [Main Page](README.md)
 
-## [Option1: Hail Tractor](Hail.md) 
+## [Next Page (Option1: Hail Tractor)](Hail.md) 
 
-## [Option2: Local Tractor](Local.md)  
+## [Next Page (Option2: Local Tractor)](Local.md)  
