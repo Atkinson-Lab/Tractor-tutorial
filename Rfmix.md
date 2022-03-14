@@ -49,9 +49,9 @@ data
 
 
 ## Software 
-Shapeit2: v2.r837
-Rfmix2
-Tractor (requires the following packages: numpy, statsmodel, pandas)
+[Shapeit2: v2.r837](https://mathgen.stats.ox.ac.uk/genetics_software/shapeit/shapeit.html)
+[Rfmix version 2](https://github.com/slowkoni/rfmix/blob/master/MANUAL.md))
+[Tractor (requires the following packages: numpy, statsmodel, pandas)](https://github.com/Atkinson-Lab/Tractor)
 
 
 &nbsp;  
@@ -150,7 +150,7 @@ bgzip -c ADMIX_COHORT/ASW.phased.vcf > ADMIX_COHORT/ASW.phased.vcf.gz
 
 --- 
 
-(Note: your reference panel needs to be phased to be used in this manner. If you are hoping to use an unphased reference panel, you may consider to run the Shapeit pipeline on the reference panel as well without being informed by a reference, or to joint-phase your cohort and reference populations).
+(Note: your reference panel needs to be phased to be used in this manner. If you are hoping to use an unphased reference panel, you should consider running the Shapeit pipeline on the reference panel first, or to joint-phase your cohort and reference populations in a file together).
 
 &nbsp;  
 &nbsp;  
@@ -163,23 +163,23 @@ bgzip -c ADMIX_COHORT/ASW.phased.vcf > ADMIX_COHORT/ASW.phased.vcf.gz
 &nbsp;  
 &nbsp;  
 
-Once we achieved a homogeneous population phased reference vcf file and a phased admixture vcf file, we can start to perform local ancestry inference. Admixed population tend to have a mosaic chromosome, meaning their chromosomes are inherited from multiple ancestries. The average length of local ancestry tracts is inversely proportional to the # of generations.
+To run locan ancestry inference, we need a homogeneous phased reference panel composed of the relevant ancestries, and a phased admixed cohort vcf file. Admixed populations have chromosomes with a mosaic of ancestral tracts, as different chromosomal pieces will have been inherited from multiple ancestries. The length of these tracts is related to the demographic history of the population, with the average tract length being inversely proportional to the number of generations ago that the pulse of admixture occurred. This is because recombination will break down tracts over time.
 
-For example, the 1st generation of African American population inherited one intact copy of chromosomes from EUR ancestry, and one intact copy of chromosomes from AFR ancestry. However, for newer generations of admixed populations, the chromosome will break down into smaller pieces due to crossover events in meiosis.
+For example, the 1st generation of the two-way admixed AFR-EUR population illustrated here inherited one full copy of chromosomes from EUR ancestry, and one from AFR ancestry. However, for more recent generations of this admixed population, the chromosomes will have been broken down into smaller ancestral pieces due to crossover events in meiosis.
 
 ![](images/localancestry.png)
 
 &nbsp;  
 &nbsp;  
 
-The goal of running local ancestry inference is to "paint" the chromosomes based on ancestry origin. In the downstream analysis, we will use local ancestry information to help us better understand the genotype-phenotype association.
+The goal of running local ancestry inference is to "paint" the chromosomes based on the ancestry origin of each piece of the genome in each individual. In the downstream analysis of this Tractor pipeline, we will use local ancestry information to help us better understand the genotype-phenotype association.
 
 ![](images/inference.png)
 
 &nbsp;  
 &nbsp;  
 
-Here we use Rfmix to perform local ancestry inference, given its high accuracy in admixed population. RFmix takes the following argument and will produce 4 files `ASW.deconvoluted.fb.tsv`, `ASW.deconvoluted.msp.tsv`, `ASW.deconvoluted.rfmix.Q`, `ASW.deconvoluted.sis.tsv`, most of which will be used in the downstream analysis. Among those files, it's worth double check `ASW.deconvoluted.rfmix.Q` to make sure the global ancestry proportion is expected. 
+Here we use [Rfmix](https://github.com/slowkoni/rfmix/blob/master/MANUAL.md) to perform local ancestry inference, given its high accuracy in multi-way admixed populations. RFmix takes the following argument and will produce 4 files `ASW.deconvoluted.fb.tsv`, `ASW.deconvoluted.msp.tsv`, `ASW.deconvoluted.rfmix.Q`, `ASW.deconvoluted.sis.tsv`, most of which will be used in the downstream analysis. This argument points to our cohort file, the reference panel, a map indicating which population each reference individual pertains to, a recombination map for the relevant chromosome, and the location where output should be deposited. To ensure that local ancestry is performing well in your target cohort, it's worth double checking the global ancestry fractions provided in `ASW.deconvoluted.rfmix.Q` to make sure the global ancestry proportions are as expected. 
 
 
 ```
@@ -196,7 +196,7 @@ rfmix -f ADMIX_COHORT/ASW.phased.vcf.gz \
 
 
 
-That's the end of this step. We will demonstrate how to iteratively improve phasing and local ancestry inference in the [next post](Recover.md)
+Now you have your local ancestry calls and are ready for Tractor! We will demonstrate how you can optionally improve phasing by iterating between phasing and local ancestry inference in the [next post](Recover.md), or if your goal is just variant-level tests (e.g. GWAS), you may skip to Step 2.
 
 
 &nbsp;  
