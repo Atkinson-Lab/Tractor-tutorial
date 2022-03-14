@@ -34,7 +34,7 @@ The `ASW.phased.vcf.gz` is converted from standard shapeit2 output, and will be 
 
 &nbsp;  
 
-We have also performed local ancestry inference with Rfmix, and the following files have been generated
+We have also performed local ancestry inference with Rfmix, and the following files have been generated:
 ```
 ASW.deconvoluted.fb.tsv	
 ASW.deconvoluted.msp.tsv
@@ -124,7 +124,7 @@ ASW.phased.anc0.dosage.txt          (used as X2)
 ASW.phased.anc1.dosage.txt          (used as X3)
 ```
 
-
+Now we are ready to run Tractor GWAS! We have recently developed python scripts for Tractor that may be used either on a local computer or in a high-perfomance computing setting (Local Tractor). These are subtlely refined over the originally released cloud native scripts (we fixed a few edge cases/bad behaviors). Should Tractor need to be run on an extremely large dataset, however, we also have developed scabable cloud-native scripts written in Hail. The user may select which of the two versions of Tractor GWAS they wish to run with the links below. For this tutorial, we recommend using Local Tractor.
 
 
 ## [Recover Tracts](Recover.md)      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     [Main Page](README.md)
