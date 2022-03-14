@@ -6,6 +6,8 @@ filename: Hail.md
 Running Tractor GWAS in a scalable cloud native Hail format
 =====
 
+![](images/TractorIcon.png)
+
 The tutorial is still under development, but we will provide an updated Jupyter notebook file that you can follow along soon. 
 
 Stay tuned!
