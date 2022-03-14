@@ -50,8 +50,10 @@ data
 
 
 ## Software 
-Shapeit2: v2.r837
-Rfmix2
+Shapeit2: v2.r837  
+
+Rfmix  Version2
+
 Tractor (requires the following packages: numpy, statsmodel, pandas)
 
 
