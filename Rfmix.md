@@ -125,7 +125,7 @@ The program will print some information and also throw some error message. You m
 
 #### C. Phasing (this is the most computational expensive step). 
 
-We will perform the actual phasing in this step. Notice we should pass argument `--exclude-snp alignments.snp.strand.exclude` to the program if you encounter errors with your own dataset, so that conflict variants are excluded. In this command, we direct Shapeit to our cohort data (--input-vcf) which is in a directory with the input data, the reference panel and recombination map files, and tell it where to place the output (-O).
+We will perform the actual phasing in this step. Notice we should pass argument `--exclude-snp alignments.snp.strand.exclude` to the program if you encounter errors with your own dataset, so that conflict variants are excluded. In this command, we direct Shapeit to our cohort data (`--input-vcf`) which is in a directory with the input data, the reference panel and recombination map files, and tell it where to place the output (`-O`).
 
 After running this command, you should find that two file (`ASW.phased.haps` & `ASW.phased.sample`) have been created in the `ADMIX_COHORT` output directory.
 
@@ -172,7 +172,7 @@ bgzip -c ADMIX_COHORT/ASW.phased.vcf > ADMIX_COHORT/ASW.phased.vcf.gz
 &nbsp;  
 &nbsp;  
 
-To run locan ancestry inference, we need a homogeneous phased reference panel composed of the relevant ancestries, and a phased admixed cohort vcf file. Admixed populations have chromosomes with a mosaic of ancestral tracts, as different chromosomal pieces will have been inherited from multiple ancestries. The length of these tracts is related to the demographic history of the population, with the average tract length being inversely proportional to the number of generations ago that the pulse of admixture occurred. This is because recombination will break down tracts over time.
+To run local ancestry inference, we need a homogeneous phased reference panel composed of the relevant ancestries, and a phased admixed cohort vcf file. Admixed populations have chromosomes with a mosaic of ancestral tracts, as different chromosomal pieces will have been inherited from multiple ancestries. The length of these tracts is related to the demographic history of the population, with the average tract length being inversely proportional to the number of generations ago that the pulse of admixture occurred. This is because recombination will break down tracts over time.
 
 For example, the 1st generation of the two-way admixed AFR-EUR population illustrated here inherited one full copy of chromosomes from EUR ancestry, and one from AFR ancestry. However, for more recent generations of this admixed population, the chromosomes will have been broken down into smaller ancestral pieces due to crossover events in meiosis.
 
@@ -213,7 +213,7 @@ Now you have your local ancestry calls and are ready for Tractor! We will demons
 
 ## [Main Page](README.md)
 
-## [Next Page (Recover phasing)](Recover.md)
+## [Next Page (optional: Recover phasing)](Recover.md)
 
-
+## [Next Page (Extract tracts)](Extract.md)
 
