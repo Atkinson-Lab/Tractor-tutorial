@@ -8,10 +8,6 @@ Running Tractor GWAS in a scalable cloud native Hail format
 
 ![](images/TractorIcon.png)
 
-The tutorial is still under development, but we will provide an updated Jupyter notebook file that you can follow along soon. 
-
-Stay tuned!
-
-In the meantime, you can see implementation for Hail Tractor on the wiki for this script here: https://github.com/Atkinson-Lab/Tractor/wiki/Step-3a:-Tractor-GWAS-(Hail). 
+Please refer to [this page](https://github.com/Atkinson-Lab/Tractor-tutorial/blob/main/Tractor-Hail.ipynb) for Tractor-Hail implementation.
 
 ## [Main Page](README.md)
