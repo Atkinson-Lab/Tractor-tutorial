@@ -38,6 +38,30 @@ We have prepared a python script `RunTractor.py` that allows users to run Tracto
 * numpy
 * statsmodel
 
+&nbsp;  
+
+For `Phe.txt` file, we expect users to prepare a tsv file with the following format:
+
+
+```
+IID	y	COV	...
+SAMPLE1	1	0.32933076689022	...
+SAMPLE2	1	1.42015135263198	...
+SAMPLE3	0	1.57285800531035	...
+SAMPLE4	0	-0.303899298288934	...
+SAMPLE5	1	0.491130537379353	...
+...	...	...	...
+```
+
+The tsv file should have at least 2 columns, with the first column indicates sample ID, and the second column indicates phenotype. If you have more covariates to add (such as PCs), users should append them as new columns. 
+
+* Please make sure all columns (expect the first column) of `Phe.txt` were encoded as numerical type. We currently do not automatically convert string to numbers.
+* Please make sure the sample ID order of `Phe.txt` is consistent with `--hapdose` files. `RunTractor.py` do not sort sample order.
+* Please include header in `Phe.txt`
+
+
+&nbsp;  
+
 
 To perform linear regression on a (simulated) continuous phenotype in our admixed cohort, simply type the following command in your terminal:
 
