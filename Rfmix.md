@@ -15,7 +15,7 @@ Before running the Tractor GWAS method, data will need to be phased and have the
 &nbsp; 
 
 ### Data
-We have provided an [example dataset](https://github.com/Atkinson-Lab/Tractor-tutorial/blob/main/tutorial-data.zip) that you may analyze to follow along with this tutorial. Please download and upzip the data from here if so.
+We have provided an [example dataset](https://github.com/Atkinson-Lab/Tractor-tutorial/blob/main/tutorial-data.zip) that you may analyze to follow along with this tutorial. Please download and upzip the data from here if so (**hit the download button, git clone is not going to work**).
 
 ```
 gunzip tutorial-data.zip
