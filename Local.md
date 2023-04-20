@@ -69,25 +69,39 @@ To perform linear regression on a (simulated) continuous phenotype in our admixe
 python RunTractor.py --hapdose ADMIX_COHORT/ASW.phased --phe PHENO/Phe.txt --method linear --out SumStats.tsv
 ```
 
-This generates our summary statistic output, which has the estimated ancestry-specific p value and effect sizes for each locus for each ancestry.
+This generates our summary statistic output, which has the estimated ancestry-specific p value and effect sizes for each locus for each ancestry. More specifically, you shall see these columns in the summary statistics:
+```
+CHROM:              Chromosome 
+POS:                Position 
+ID:                 SNP ID
+REF:                Reference allele 
+ALT:                Alternate allele 
+AF_anc0:            Allele frequency for anc0 (AFR); computed as sum(dosage)/sum(local ancestry)
+AF_anc1:            Allele frequency for anc1 (EUR); computed as sum(dosage)/sum(local ancestry)
+LAprop_anc0:        Local ancestry proportion for anc0 (AFR); computed as sum(local ancestry)/2 * sample size
+LAprop_anc1:        Local ancestry proportion for anc1 (EUR); computed as sum(local ancestry)/2 * sample size
+LAeff_anc0:         Effect size for the local ancestry term (X1 term in Tractor)
+LApval_anc0:        p value for the local ancestry term (X1 term in Tractor)
+Geff_anc0:          Effect size for alternate alleles that are interited from anc0 (AFR) (X2 term in Tractor)
+Geff_anc1:          Effect size for alternate alleles that are interited from anc1 (EUR) (X3 term in Tractor)
+Gpval_anc0:         p value for alternate alleles that are interited from anc0 (AFR) (X2 term in Tractor)
+Gpval_anc1:         p value for alternate alleles that are interited from anc1 (EUR) (X3 term in Tractor)
+```
 
-Often we want to visualize our GWAS results. Here we use the R package [qqman](https://cran.r-project.org/web/packages/qqman/vignettes/qqman.html) to draw a manhattan plot of our sumstats, and indeed we see a top hit in the AFR with some LD friends. Note in particular that we have a hit in only the AFR ancestry background in this example, no signal is observed in the EUR plot. We recommend plotting QQ plots with the lambda GC values shown in addition to your Manhattan plots to ensure your GWAS was well controlled.
+To visualize Tractor GWAS results, we may use the R package [qqman](https://cran.r-project.org/web/packages/qqman/vignettes/qqman.html) to draw a manhattan plot of our sumstats, and indeed we see a top hit in the AFR with some LD friends. Note in particular that we have a hit in only the AFR ancestry background in this example, no signal is observed in the EUR plot. We recommend plotting QQ plots with the lambda GC values shown in addition to your Manhattan plots to ensure your GWAS was well controlled.
 
 ```
 library(qqman)
 sumstats = read.csv("SumStats.tsv", sep = "\t")
 
 par(mfrow=c(1,2))
-manhattan(sumstats[!is.na(sumstats$ANC0P),], chr="CHROM", bp="POS", snp="ID", p="ANC0P",
+manhattan(sumstats[!is.na(sumstats$Gpval_anc0),], chr="CHROM", bp="POS", snp="ID", p="Gpval_anc0",
           xlim = c(min(sumstats$POS), max(sumstats$POS)), ylim = c(0,15), main = "AFR")
-manhattan(sumstats[!is.na(sumstats$ANC1P),], chr="CHROM", bp="POS", snp="ID", p="ANC1P",
+manhattan(sumstats[!is.na(sumstats$Gpval_anc1),], chr="CHROM", bp="POS", snp="ID", p="Gpval_anc1",
           xlim = c(min(sumstats$POS), max(sumstats$POS)), ylim = c(0,15), main = "EUR")
 ```
 
 ![](images/Manhattan.png)
-
-
-That's the end of the tutorial, please refer to [Tractor Wiki](https://github.com/Atkinson-Lab/Tractor/wiki) page for a more information.
 
 &nbsp;  
 
