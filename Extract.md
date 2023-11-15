@@ -54,7 +54,7 @@ The `ASW.deconvoluted.msp.tsv` file, which contains the most likely ancestral as
 
 We provide a script that can simultaneously extract risk allele information and local ancestry information. Simply type the following command in terminal:
 ```
-python Tractor/ExtractTracts.py \
+python Tractor/extract_tracts.py \
       --msp ADMIX_COHORT/ASW.deconvoluted \
       --vcf ADMIX_COHORT/ASW.phased \
       --zipped \
