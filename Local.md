@@ -66,7 +66,7 @@ The tsv file should have at least 2 columns, with the first column indicates sam
 To perform linear regression on a (simulated) continuous phenotype in our admixed cohort, simply type the following command in your terminal:
 
 ```
-python RunTractor.py --hapdose ADMIX_COHORT/ASW.phased --phe PHENO/Phe.txt --method linear --out SumStats.tsv
+Rscript run_tractor.R --hapdose ADMIX_COHORT/ASW.phased --phe PHENO/Phe.txt --method linear --out SumStats.tsv
 ```
 
 This generates our summary statistic output, which has the estimated ancestry-specific p value and effect sizes for each locus for each ancestry. More specifically, you shall see these columns in the summary statistics:
