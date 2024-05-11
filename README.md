@@ -2,31 +2,21 @@
 
 ## Tractor - A GWAS tool for admixed population 
 
-Thanks for your interest in Tractor!
+Welcome to Tractor!
 
-The methodology and utility of Tractor is more fully described in our 2021 Nature Genetics publication [here](https://www.nature.com/articles/s41588-020-00766-y), "Tractor uses local ancestry to enable the inclusion of admixed individuals in GWAS and to boost power". We ask that you cite this manuscript for work utilizing the Tractor software.
+For a comprehensive understanding of Tractor's methodology and application, we invite you to read our following **2021 Nature Genetics publication** [here](https://www.nature.com/articles/s41588-020-00766-y). 
 
-&nbsp;  
+> Atkinson, E.G., Maihofer, A.X., Kanai, M. et al. Tractor uses local ancestry to enable the inclusion of admixed individuals in GWAS and to boost power. Nat Genet 53, 195–204 (2021).
 
+To facilitate users in implementing the method, we've curated a series of tutorials available here. These tutorials cover each step of the Tractor pipeline using a toy dataset. Please [download](https://github.com/Atkinson-Lab/Tractor-tutorial/blob/main/tutorial-data.zip) and unzip the provided file with the toy data to follow along.
 
-To assist users with implementing the method, we have prepared a series of tutorials here that go over each step of Tractor pipeline with a toy dataset. Please download and unzip the [file](https://github.com/Atkinson-Lab/Tractor-tutorial/blob/main/tutorial-data.zip) with this toy data if you hope to follow along. 
+Please note that while this tutorial offers a high-level guide to running Tractor, users are advised to ensure the reliability and accuracy of phasing and local ancestry inference, as these factors influence the Tractor GWAS results.
 
-(As a note, this tutorial serves as a high-level guide to running Tractor, and it’s the users' responsibility to make sure phasing and local ancestry inference are reliable before running the method, as these will affect results.)
-
-
-&nbsp;  
-&nbsp;  
 
 ## Tractor pipeline step-by-step tutorials:
 
-
-Step0. [Phasing and Local Ancestry Inference](Rfmix.md)
-
-Step1. [Recovering Tracts](Recover.md)
-
-Step2. [Extracting tracts and ancestry dosages](Extract.md)
-
-Step3a. [Tractor GWAS with Hail (suitable for large scale analysis)](Hail.md)
-
-Step3b. [Tractor GWAS with local implementation (suitable for smaller dataset)](Local.md)
-
+- **Step 0**: [Phasing and Local Ancestry Inference](Rfmix.md)
+- **Step 1**: [Recovering Tracts](Recover.md)
+- **Step 2**: [Extracting tracts and ancestry dosages](Extract.md)
+- **Step 3a**: [Tractor GWAS with local implementation (suitable for smaller dataset)](Local.md)
+- **Step 3b**: [Tractor GWAS with Hail (suitable for large scale analysis)](Hail.md)
