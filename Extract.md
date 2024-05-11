@@ -7,72 +7,55 @@ filename: Extract.md
 
 Compared to the standard GWAS model, Tractor takes local ancestry into account and therefore may help improve discovery power when there are (LD, MAF, or effect size) differences across ancestries, as well as better localizing top hits, and providing more accurate effect size estimates. In the [previous step](Rfmix.md), we demonstrated how to perform local ancestry inference using Rfmix. Now, we will process the RFmix output files to generate more interpretable intermediate files which will be used in statistical modeling.
 
-
-&nbsp;  
-&nbsp;  
-
 ## Prerequisites
 
 #### Download Tractor Scripts
 
-Tractor scripts can be easily installed with:
+Tractor scripts are readily available on the Tractor GitHub repository and can be easily cloned. All scripts utilized in this tutorial are accessible in the `scripts/` directory.
 ```
 git clone https://github.com/Atkinson-Lab/Tractor.git
 ```
+Here, we showcase the fundamental functionality of these scripts. However, **we recommend referring to the [README](https://github.com/Atkinson-Lab/Tractor.git) for Tractor to explore additional functionalities beyond those outlined here.**
 
-&nbsp;  
-&nbsp;  
+#### Verify files in `admixed_cohort` directory
 
-#### Check files in `ADMIX_COHORT` directory
-
-We have demonstrated how to perform phasing and local ancestry inference, respectively, on the first page of this tutorial. To recap, after running phasing with Shapeit2, we should have 
+The previous Phasing step should have generated the following files.
 ```
-ASW.phased.haps
-ASW.phased.sample
-ASW.phased.vcf
-ASW.phased.vcf.gz
+ASW.unphased.vcf.gz[.csi]
+ASW.unphased_mod1.vcf.gz[.csi] # Modified to include AC/AN tags
+ASW.phased.vcf.gz[.csi]        # SHAPEIT5 phased data
 ```
-The `ASW.phased.vcf.gz` is converted from standard shapeit2 output, and will be used as an argument for `ExtractTracts.py`.
+The ASW.phased.vcf.gz file, converted from standard SHAPEIT5 output will serve as an argument for extract_tracts.py.
 
-&nbsp;  
-
-We have also performed local ancestry inference with Rfmix, and the following files have been generated:
+Additionally, after performing local ancestry inference with RFMix2, the following files should have been generated:
 ```
-ASW.deconvoluted.fb.tsv	
+ASW.deconvoluted.fb.tsv
 ASW.deconvoluted.msp.tsv
 ASW.deconvoluted.rfmix.Q
 ASW.deconvoluted.sis.tsv
 ```
 
-The `ASW.deconvoluted.msp.tsv` file, which contains the most likely ancestral assignment for all variants in each individual in the cohort, will be later used as an argument for `ExtractTracts.py`.
+The `ASW.deconvoluted.msp.tsv` file, containing the most probable ancestral assignments for all variants in each individual within the cohort, will be utilized as an argument for `extract_tracts.py`.
 
 &nbsp;  
-&nbsp;  
-
 
 ## Extract Tracts
 
-We provide a script that can simultaneously extract risk allele information and local ancestry information. Simply type the following command in terminal:
+We offer a script capable of extracting risk allele information and local ancestry simultaneously.
 ```
-python Tractor/extract_tracts.py \
-      --msp ADMIX_COHORT/ASW.deconvoluted \
-      --vcf ADMIX_COHORT/ASW.phased \
-      --zipped \
-      --num-ancs 2
+python3 extract_tracts.py \
+--vcf admixed_cohort/ASW.phased.vcf.gz \
+--msp admixed_cohort/ASW.deconvoluted.msp.tsv \
+--num-ancs 2
 ```
-Note that we used the --zipped flag because the files we are using in this tutorial at zipped. If your data has not been zipped, omit this flag.
 
-6 files will be generated:
-```
+4 files will be generated:
+```less
 ASW.phased.anc0.dosage.txt
 ASW.phased.anc0.hapcount.txt
-ASW.phased.anc0.vcf
 ASW.phased.anc1.dosage.txt
 ASW.phased.anc1.hapcount.txt
-ASW.phased.anc1.vcf
 ```
-
-&nbsp;  
 
 #### What happened under the hood?
 
@@ -85,7 +68,6 @@ CHROM POS REF ALT SAMPLE1   ...
 22    93  G   A   0|0       ...
 22    106 G   A   0|0       ...
 22    223 G   A   0|1       ...
-
 ...
 ```
 
@@ -98,36 +80,23 @@ CHROM SPOS  EPOS SAMPLE1.0 SAMPLE1.1   ...
 22    52    101 1         1       ...
 22    101   190 0         1       ...
 22    190   283 0         1       ...
-
 ...
 ```
 
-
-&nbsp;  
-
 By checking both files simultaneously, we can figure out the local ancestry (LA) background of each of the alleles in our dataset, as the upper portion of the following diagram shows. To represent both LA and risk allele information, we need to recode each variant into 4 columns, with each column represents a unique combination of LA and risk allele (`AFR-nonRisk`, `AFR-Risk`, `EUR-nonRisk`, `EUR-Risk`). In the diagram below, at the first variant, SAMPLE1 has one copy of `AFR-nonRisk`, and one copy of `EUR-Risk`, and therefore will be encoded to **[1,0,0,1]**. 
 
-&nbsp;  
-
-To further compress the information, `ExtractTracts.py` did an additional step -- talling the total number of copies of `AFR` local ancestry for each variant for each person. This can be thought of as adding `AFR-nonRisk` and `AFR-Risk`. 
-
-&nbsp;  
-
+To further compress the information, `extract_tracts.py` did an additional step -- talling the total number of copies of `AFR` local ancestry for each variant for each person. This can be thought of as adding `AFR-nonRisk` and `AFR-Risk`. 
 
 ![](images/ExtractTract.png)
 
-
-&nbsp; 
-
-Running ExtractTracts.py on our toy dataset will generate 6 files, and 3 of them will be used in the next step for statistical modeling in the Tractor GWAS. You can read about the other files on the Tractor Wiki for this script [here](https://github.com/Atkinson-Lab/Tractor/wiki/Step-2:-Extracting-tracts-and-ancestral-dosages).
+Running ExtractTracts.py on our toy dataset will generate 4 files, and 3 of them will be used in the next step for statistical modeling in the Tractor GWAS. You can read about the other files on the Tractor Wiki for this script [here](https://github.com/Atkinson-Lab/Tractor/wiki/Step-2:-Extracting-tracts-and-ancestral-dosages).
 ```
 ASW.phased.anc0.hapcount.txt        (used as X1)
 ASW.phased.anc0.dosage.txt          (used as X2)
 ASW.phased.anc1.dosage.txt          (used as X3)
 ```
 
-Now we are ready to run Tractor GWAS! We have recently developed python scripts for Tractor that may be used either on a local computer or in a high-perfomance computing setting (Local Tractor). These are subtlely refined over the originally released cloud native scripts (we fixed a few edge cases/bad behaviors). Should Tractor need to be run on an extremely large dataset, however, we also have developed scabable cloud-native scripts written in Hail. The user may select which of the two versions of Tractor GWAS they wish to run with the links below. For this tutorial, we recommend using Local Tractor.
-
+Now we are ready to run Tractor GWAS! We have recently developed scripts for Tractor that may be used either on a local computer or in a high-perfomance computing setting (Local Tractor). These are subtlely refined over the originally released cloud native scripts (we fixed a few edge cases/bad behaviors). Should Tractor need to be run on an extremely large dataset, however, we also have developed scabable cloud-native scripts written in Hail. The user may select which of the two versions of Tractor GWAS they wish to run with the links below. For this tutorial, we recommend using Local Tractor.
 
 ## [Main Page](README.md)
 
