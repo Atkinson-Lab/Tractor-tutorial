@@ -99,10 +99,11 @@ To visualize Tractor GWAS results, we may use the R package [qqman](https://cran
 library(qqman)
 sumstats = read.csv("SumStats.tsv", sep = "\t")
 
+# Assuming anc0 is AFR and anc1 is EUR. Please check LAI output to identify ancestry classifications.
 par(mfrow=c(1,2))
-manhattan(sumstats[!is.na(sumstats$Gpval_anc0),], chr="CHROM", bp="POS", snp="ID", p="Gpval_anc0",
+manhattan(sumstats[!is.na(sumstats$Gpval_anc0),], chr="CHROM", bp="POS", snp="ID", p="pval_anc0",
           xlim = c(min(sumstats$POS), max(sumstats$POS)), ylim = c(0,15), main = "AFR")
-manhattan(sumstats[!is.na(sumstats$Gpval_anc1),], chr="CHROM", bp="POS", snp="ID", p="Gpval_anc1",
+manhattan(sumstats[!is.na(sumstats$Gpval_anc1),], chr="CHROM", bp="POS", snp="ID", p="pval_anc1",
           xlim = c(min(sumstats$POS), max(sumstats$POS)), ylim = c(0,15), main = "EUR")
 ```
 
