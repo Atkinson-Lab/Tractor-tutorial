@@ -144,7 +144,6 @@ rfmix \
 --chromosome=22
 ```
 
-Now you have your local ancestry calls and are ready for Tractor! We will demonstrate how you can optionally improve phasing by iterating between phasing and local ancestry inference in the [next post](Recover.md), or if your goal is just variant-level tests (e.g. GWAS), you may skip to Step 2.
 
 Now that you have your local ancestry calls, you're all set for Tractor! In the [next post](Recover.md), we'll illustrate how you can optionally enhance phasing by correcting switch errors that typically occur in phasing. Alternatively, if your objective primarily involves understanding variant-level tests (e.g., Tractor GWAS), you can proceed directly to [Step 2: Extract tracts](Extract.md).
 
