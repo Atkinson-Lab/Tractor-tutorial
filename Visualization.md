@@ -14,7 +14,7 @@ In this guide, we demonstrate how to generate **Manhattan and Q-Q plots** using 
 
 > **Note:** P-values can vary substantially between phenotypes. Some datasets may have closely clustered values, while others may contain extreme outliers. You may need to adjust the Y-axis or code to suit your specific dataset, but it's a great place to get started.
 
-## Customizing the Y-axis
+### Customizing the Y-axis
 
 You can modify the y-axis using `scale_y_continuous()`, for example by setting `breaks` and `labels`:
 
@@ -26,7 +26,7 @@ scale_y_continuous(
 )
 ```
 
-### Applying Transformations on Y-axix
+**Applying Transformations on Y-axis**
 
 To handle outliers and improve readability, you can apply a transformation to the y-axis (e.g., log-scale):
 
@@ -39,7 +39,7 @@ scale_y_continuous(
 
 -------
 
-## Example: Generating Manhattan and QQ Plots
+## Generating Manhattan and QQ Plots
 
 The following code demonstrates how to create a Manhattan and Q-Q plots from Tractor summary statistics. The code will generate plots for all ancestral terms within the summary statistics.
 
@@ -236,15 +236,18 @@ for (anc in anc_list) {
 
 ```
 
-Example Manhattan plot:
+### Example plots:
+
+**Example Manhattan plot:**
 ![](images/tractor_manhattan_plot.png)
 
-Example QQ plot:
-![](images/tractor_qq_plot.png)
+**Example QQ plot:**
 
--------
+<img src="images/tractor_qq_plot.png" alt="Example QQ plot" width="400"/>
 
-## Example: Generating Volcano Plot to study effect sizes
+------------
+
+## Generating Volcano Plot to study effect sizes
 
 To better explore and identify potential candidate variants, we provide example code to generate a Volcano plot illustrating the relationship between statistical significance (p-values) and effect sizes (β coefficients). By visualizing variants across these dimensions, researchers can more easily pinpoint those that are statistically significant and may indicate variants with potentially meaningful biological effects.
 
@@ -377,7 +380,9 @@ paste0("Volcano plot saved as: ", output_file)
 
 ```
 
-![](images/tractor_effectsize_volcano.png)
+**Example Volcano Plot:**
+
+<img src="images/tractor_effectsize_volcano.png" alt="Example Tractor Effect Size v/s Signficiance Volcano Plot" width="600"/>
 
 
 ---
