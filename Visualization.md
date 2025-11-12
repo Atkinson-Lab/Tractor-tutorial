@@ -8,7 +8,7 @@ filename: Visualization.md
 
 **Tractor** is a local-ancestry-aware GWAS tool that produces summary statistics in a single file, including p-values and effect sizes for all haplotypic ancestral terms in your cohort.
 
-Detailed descriptions of the output columns are available in [Tractor GWAS' local implementation](Local.md).
+Detailed descriptions of the output columns are available in [Tractor GWAS local implementation](Local.md).
 
 In this guide, we demonstrate how to generate **Manhattan and Q-Q plots** using **ggplot2** for summary statistics generated using Tractor. We use **ggplot2** for Manhattan plots as it offers superior customization options. An example code snippet is provided below to help you get started.
 
