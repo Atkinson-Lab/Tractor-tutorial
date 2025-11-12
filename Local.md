@@ -111,3 +111,6 @@ manhattan(sumstats[!is.na(sumstats$Gpval_anc1),], chr="CHROM", bp="POS", snp="ID
 
 
 ## [Main Page](README.md)
+
+## [Next Page (Visualization of Tractor summary statistics)](Visualization.md) 
+

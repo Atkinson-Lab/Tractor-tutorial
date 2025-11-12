@@ -20,3 +20,4 @@ Please note that while this tutorial offers a high-level guide to running Tracto
 - **Step 2**: [Extracting tracts and ancestry dosages](Extract.md)
 - **Step 3a**: [Tractor GWAS with local implementation (suitable for smaller dataset)](Local.md)
 - **Step 3b**: [Tractor GWAS with Hail (suitable for large scale analysis)](Hail.md)
+- **Step 4**: [Visualization of Tractor summary statistics](Visualization.md)
