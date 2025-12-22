@@ -5,7 +5,7 @@ filename: PC-GRM.md
 
 ![](images/TractorIcon.png) 
 
-# Step 3: estimate PC/GRM (Tractor-Mix)
+# Step 3: Estimate PC/GRM (Tractor-Mix)
 
 In the mixed model, we include principal components (PCs) to account for population structure and use the genetic relatedness matrix (GRM) to control for family relatedness. For studies involving admixed individuals, you can use standard PCs in combination with a standard GRM. Alternatively, the PC-AiR/PC-Relate framework can be used, which is specifically designed for admixed populations. PC-AiR separates population structure from familial relatedness, while PC-Relate estimates the GRM accordingly. This approach provides a more theoretically robust treatment of relatedness in admixed samples. However, based on our simulation studies, both approaches show comparable performance in admixture GWAS.
 
@@ -60,9 +60,6 @@ These files can now be used as covariates and input matrices in Tractor-Mix.
 
 
 
-&nbsp;  
-&nbsp;  
-
 
 
 ### Estimating PCs and GRM with PC-AiR and PC-Relate (via GENESIS)
@@ -70,7 +67,7 @@ These files can now be used as covariates and input matrices in Tractor-Mix.
 
 Running PC-AiR and PC-Relate is more involved than using standard PCA/GRM approaches. For a full explanation and usage examples, we refer readers to [the official tutorial](https://bioconductor.org/packages/release/bioc/vignettes/GENESIS/inst/doc/pcair.html). 
 
-We used the [this code](https://github.com/Atkinson-Lab/Tractor-Mix-manuscript/blob/main/UKBB/TRACTOR/make_PC_GRM_from_GENESIS.R) for the manuscript.
+We used [this code](https://github.com/Atkinson-Lab/Tractor-Mix-manuscript/blob/main/UKBB/TRACTOR/make_PC_GRM_from_GENESIS.R) for the manuscript.
 
 Below is a brief summary of the key steps involved in running PC-AiR/PC-Relate using the GENESIS R package:
 
