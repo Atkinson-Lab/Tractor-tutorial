@@ -47,7 +47,7 @@ Model_Null =   glmmkin(fixed = y ~  PC1 + PC2,
 
 
 
-We can now proceed to run Tractor-Mix across all variants. By default, the standard Tractor-Mix model does not include local ancestry as a covariate in the association model. This means the effect sizes are estimated based on ancestry-specific genotypes, but local ancestry itself is not adjusted for in the regression model.
+We can now proceed to run Tractor-Mix across all variants. By default, the standard Tractor-Mix model does not include local ancestry as a covariate in the association model. This means the effect sizes are estimated based on ancestry-specific genotypes, but local ancestry itself is not adjusted for in the regression model. For the toy data, we use `AC_threshold = 1`, but you may need to adjust this parameter for a larger cohort. This is because Tractor-Mix may not be calibrated when allele counts are low. In the manuscript, we used `AC_threshold = 50`. 
 
 ```{r}
 source("TractorMix.score.R")
@@ -77,6 +77,7 @@ TractorMix.score_cond(obj = Model_Null,
 ```
 
 
+## [Main Page](README.md)
 
 
 
