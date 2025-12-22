@@ -71,30 +71,22 @@ We used [this code](https://github.com/Atkinson-Lab/Tractor-Mix-manuscript/blob/
 
 Below is a brief summary of the key steps involved in running PC-AiR/PC-Relate using the GENESIS R package:
 
-1. Run KING-Robust on the pruned VCF file.  
+**Run KING-Robust on the pruned VCF file**: This step estimates pairwise kinship coefficients that are robust to population structure. PLINK2 provides a built-in implementation via the --make-king-table option.
 
-This step estimates pairwise kinship coefficients that are robust to population structure. PLINK2 provides a built-in implementation via the --make-king-table option.
-
-2. Convert the pruned VCF to PLINK binary format (.bed/.bim/.fam).  
-
-These files are required for conversion into GDS format, which is the input format used by GENESIS.
+**Convert the pruned VCF to PLINK binary format (.bed/.bim/.fam)**: These files are required for conversion into GDS format, which is the input format used by GENESIS.
 
 
-3. Convert the PLINK files to GDS format.  
+**Convert the PLINK files to GDS format**: The SNPRelate package is used to generate a .gds file from the PLINK binary files.
 
-The SNPRelate package is used to generate a .gds file from the PLINK binary files.
+**Perform PC-AiR analysis**: PC-AiR partitions individuals into related and unrelated subsets, and computes principal components while accounting for relatedness. This helps separate population structure from family structure.
 
-4. Perform PC-AiR analysis.  
-
-PC-AiR partitions individuals into related and unrelated subsets, and computes principal components while accounting for relatedness. This helps separate population structure from family structure.
-
-5. Estimate the GRM using PC-Relate.  
-
-PC-Relate uses the output from PC-AiR to estimate pairwise relatedness, capturing both family-level and population-level structure.
+**Estimate the GRM using PC-Relate**: PC-Relate uses the output from PC-AiR to estimate pairwise relatedness, capturing both family-level and population-level structure.
 
 
 
+## [Main Page](README.md)
 
+## [Next Page (Mixed effect model with Tractor-Mix)](GLMM.md) 
 
 
 
