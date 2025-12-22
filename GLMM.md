@@ -5,11 +5,11 @@ filename: GLMM.md
 
 ![](images/TractorIcon.png) 
 
-# Step 4: Mix effect model with Tractor-Mix
+# Step 4: Mixed effect model with Tractor-Mix
 
 Now that all components of Tractor-Mix are assembled, we are ready to fit the null model using GMMAT. Before doing so, we first need to load the phenotype data, PCs, and the GRM into R.
 
-For generalized linear mixed models (GLMMs), it is common practice to use a sparse GRM. Specifically, we recommend masking the GRM to retain only pairwise relatedness values greater than 0.05. This sparsification can lead to substantial improvements in computational efficiency—often reducing runtime by a factor of 10, depending on cohort size.
+For generalized linear mixed models (GLMMs), it is common practice to use a sparse GRM. Specifically, we recommend masking the GRM to retain only pairwise relatedness values greater than 0.05. This sparsification can lead to substantial improvements in computational efficiency, often reducing runtime by a factor of 10, depending on cohort size.
 
 We strongly recommend using a sparse GRM, especially when working with cohorts that include thousands of individuals.
 
@@ -63,7 +63,7 @@ TractorMix.score(obj = Model_Null,
 
 
 
-Alternatively, you may consider performing a conditional analysis, which more closely mirrors the original Tractor framework. In this approach, the model includes local ancestry explicitly, following the form:$y \sim LA + G1 + G2$. This implementation is available in our pipeline; however, it has not yet been thoroughly tested. We recommend using it with caution.
+Alternatively, you may consider performing a conditional analysis, which more closely mirrors the original Tractor framework. In this approach, the model includes local ancestry explicitly, following the form: $y \sim LA + G1 + G2$. This implementation is available in our pipeline; however, it has not yet been thoroughly tested. We recommend using it with caution.
 
 
 ```
