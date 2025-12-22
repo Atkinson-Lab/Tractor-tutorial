@@ -35,7 +35,7 @@ Please note that while this tutorial offers a high-level guide to running Tracto
 - **Step 1**: [Recovering Tracts (often skipped)](Recover.md)
 - **Step 2**: [Extracting tracts and ancestry dosages](Extract.md)
 - **Step 3**: [Estimate PC/GRM](PC-GRM.md)
-- **Step 4**: [Mix effect model with Tractor-Mix](GLMM.md)
+- **Step 4**: [Mixed effect model with Tractor-Mix](GLMM.md)
 
 
 
