@@ -10,12 +10,7 @@ filename: Rfmix.md
 Before running the Tractor GWAS method, data will need to be phased and have their local ancestry inferred. To assist users with these precursor steps, we provide example code for running the full pipeline including these preliminary steps. In this tutorial, we do expect our input data to be unphased, but already QC'd. This may not be the case for your dataset. In addition, the flags used in these steps are simply presented to highlight one working example, however, you might require a different set of flags for your run depending on the dataset. We recommend reviewing the documentation of respective tools and making sure Phasing and Local Ancestry Inference (LAI) performs well.
 
 ### Data
-Download and unzip this [example dataset](https://github.com/Atkinson-Lab/Tractor-tutorial/blob/main/tutorial-data.zip) to follow along the tutorial.
-
-```
-curl -O -L https://github.com/Atkinson-Lab/Tractor-tutorial/raw/main/tutorial-data.zip
-unzip tutorial-data.zip
-```
+Download and unzip this [example dataset](https://github.com/Atkinson-Lab/Tractor-tutorial/blob/main/test_data.zip) to follow along the tutorial.
 
 The example cohort dataset we are going to use here consists of chromosome 22 for 61 African American individuals from the [Thousand Genome Project](https://www.internationalgenome.org/). These individuals are two-way admixed with components from continental Africa (AFR) and European (EUR) ancestries. We simulated phenotypes for these individuals for use in the GWAS.
 
